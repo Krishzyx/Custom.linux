@@ -1,0 +1,121 @@
+.TH INTERNSCTL 1 "December 2023" "Version 1.0" "internsctl manual"
+
+.SH NAME
+internsctl \- custom command for managing interns
+
+.SH SYNOPSIS
+.B internsctl
+[\fIoptions\fR] \fIcommand\fR [\fIarguments\fR]
+
+.SH DESCRIPTION
+\fBinternsctl\fR is a custom command for managing interns. It provides various subcommands
+to perform specific tasks related to intern management.
+
+.SH OPTIONS
+.TP
+\fB-h, --help\fR
+Display help message and exit.
+
+.SH COMMANDS
+.TP
+\fBadd\fR \fI<name>\fR
+Add a new intern with the given name.
+
+.TP
+\fBlist\fR
+List all interns.
+
+.TP
+\fBremove\fR \fI<name>\fR
+Remove the intern with the given name.
+
+.SH EXAMPLES
+To add a new intern:
+.BR internsctl add John
+
+To list all interns:
+.BR internsctl list
+
+To remove an intern:
+.BR internsctl remove John
+
+.SH SEE ALSO
+.BR man(1)
+
+#!/bin/bash
+
+# internsctl.sh
+
+# Function to display help message
+display_help() {
+    echo "Usage: internsctl [options] <command> [arguments]"
+    echo "Options:"
+    echo "  --help      Display this help message."
+    echo "  --version   Display the version of internsctl."
+    echo
+    echo "Commands:"
+    echo "  add <name>      Add a new intern with the given name."
+    echo "  list            List all interns."
+    echo "  remove <name>   Remove the intern with the given name."
+}
+
+# Function to display version
+display_version() {
+    echo "internsctl version 1.0"
+}
+
+# Check for options
+while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+        --help)
+            display_help
+            exit 0
+            ;;
+        --version)
+            display_version
+            exit 0
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+# Check if a command is provided
+if [ "$#" -eq 0 ]; then
+    echo "Error: No command provided. Use 'internsctl --help' for usage."
+    exit 1
+fi
+
+# Parse the command
+command="$1"
+shift
+
+# Implement the command logic
+case "$command" in
+    add)
+        # Add logic
+        echo "Adding intern: $1"
+        ;;
+    list)
+        # List logic
+        echo "Listing interns"
+        ;;
+    remove)
+        # Remove logic
+        echo "Removing intern: $1"
+        ;;
+    *)
+        echo "Error: Unknown command '$command'. Use 'internsctl --help' for usage."
+        exit 1
+        ;;
+esac
+
+ 
+
+ //Install the manual page
+ sudo cp internsctl.1 /usr/share/man/man1/
+//Update the Manual page index
+sudo mandb
+//run internsect1
+man internsctl
